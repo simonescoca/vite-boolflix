@@ -6,20 +6,24 @@
                 Search
             </button>
         </div>
+        <MoviesContainer :moviesData="moviesData"/>
+
     </div>
 </template>
 
 <script>
     import axios from "axios"
+    import MoviesContainer from "./MoviesContainer.vue"
     export default {
         data() {
             return {
-                search: ""
+                search: "",
+                moviesData: []
             }
         },
 
         components: {
-
+            MoviesContainer
         },
 
         props: {
@@ -31,16 +35,19 @@
         },
 
         created () {
-            this.axiosCall ()
+
         },
 
         methods: {
             axiosCall () {
                 // Make a request for a user with a given ID
                 axios.get(`https://api.themoviedb.org/3/search/movie?api_key=dc3e5c6f1e5fee243aaae7cfaab19b0e&query=${this.search}`)
-                .then(function (response) {
+                .then((response) => {
                     // handle success
-                    console.log(response);
+                    response.data.results.forEach((element) => {
+                        this.moviesData.push(element)
+                    });
+                    console.log(this.moviesData);
                 })
                 .catch(function (error) {
                     // handle error
