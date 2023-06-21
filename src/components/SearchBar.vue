@@ -7,23 +7,26 @@
             </button>
         </div>
         <MoviesContainer :moviesData="moviesData"/>
-
+        <SeriesContainer :seriesData="seriesData" />
     </div>
 </template>
 
 <script>
     import axios from "axios"
     import MoviesContainer from "./MoviesContainer.vue"
+    import SeriesContainer from "./SeriesContainer.vue"
     export default {
         data() {
             return {
                 search: "",
-                moviesData: []
+                moviesData: [],
+                seriesData: [],
             }
         },
 
         components: {
-            MoviesContainer
+            MoviesContainer,
+            SeriesContainer
         },
 
         props: {
@@ -46,6 +49,23 @@
                     // handle success
                     response.data.results.forEach((element) => {
                         this.moviesData.push(element)
+                    });
+                    console.log(this.moviesData);
+                })
+                .catch(function (error) {
+                    // handle error
+                    console.log(error);
+                })
+                .finally(function () {
+                    // always executed
+                });
+
+                // Make a request for a user with a given ID
+                axios.get(`https://api.themoviedb.org/3/search/tv?api_key=dc3e5c6f1e5fee243aaae7cfaab19b0e&query=${this.search}`)
+                .then((response) => {
+                    // handle success
+                    response.data.results.forEach((element) => {
+                        this.seriesData.push(element)
                     });
                     console.log(this.moviesData);
                 })
