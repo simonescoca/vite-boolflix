@@ -1,5 +1,5 @@
 <template>
-    <div class="card" style="width: 18rem;">
+    <div class="card">
         <img src="..." class="card-img-top" :alt="`Copertina di ${movie.title}`">
         <div class="card-body">
             <h5 class="card-title">
@@ -8,9 +8,14 @@
             <h5>
                 Titolo originale: {{ movie.original_title }}
             </h5>
-            <h5>
-                Lingua originale: {{ movie.original_language }}
-            </h5>
+            <div class="d-flex align-items-center justify-content-start my_gap">
+                <div>
+                    Lingua originale:
+                </div>
+                <div class="my_flag-container">
+                    <img :src="checkFlag(movie.original_language)" :alt="movie.original_language">
+                </div>
+            </div>
             <h5>
                 Voto: {{ movie.vote_average }}
             </h5>
@@ -32,7 +37,8 @@
         },
 
         props: {
-            movie: Object
+            movie: Object,
+            flags: Object
         },
 
         mounted () {
@@ -44,7 +50,11 @@
         },
 
         methods: {
-
+            checkFlag (language) {
+                let a = "this.flags." + language
+                a = eval(a)
+                return a
+            }
         }
     }
 </script>
@@ -52,4 +62,24 @@
 <style lang="scss" scoped>
     @use "../styles/variables";
     @use "../styles/mixins";
+
+    .card {
+        width: 18rem;
+    }
+
+    .my_flag-container {
+        height: 25px;
+        width: 25px;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+        }
+    }
+
+    .my_gap {
+        gap: 1rem;
+    }
 </style>
