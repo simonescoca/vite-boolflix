@@ -1,6 +1,6 @@
 <template>
     <div class="card">
-        <img src="..." class="card-img-top" :alt="`Copertina di ${serie.name}`">
+        <img :src="`https://image.tmdb.org/t/p/w300${serie.poster_path}`" class="card-img-top" :alt="`Copertina di ${serie.name}`">
         <div class="card-body">
             <h5 class="card-title">
                 Titolo: {{ serie.name }}
@@ -16,15 +16,15 @@
                     <img :src="checkFlag(serie.original_language)" :alt="serie.original_language">
                 </div>
             </div>
-            <h5>
-                Voto: {{ serie.vote_average }}
-            </h5>
+            <p>
+                <i class="fa-solid fa-star my_gold-star" v-for="i in Math.ceil( (serie.vote_average) / 2)"></i>
+                <i class="fa-regular fa-star my_gold-star" v-for="i in (5 - Math.ceil( (serie.vote_average) / 2))"></i>
+            </p>
         </div>
     </div>
 </template>
 
 <script>
-    // import axios from "axios"
     export default {
         data() {
             return {
@@ -81,5 +81,9 @@
 
     .my_gap {
         gap: 1rem;
+    }
+
+    .my_gold-star {
+        color: #d8b450;
     }
 </style>
