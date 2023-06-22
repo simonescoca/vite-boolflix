@@ -65,6 +65,32 @@
 
     .card {
         width: 18rem;
+        position: relative;
+        cursor: pointer;
+
+        img {
+            border-radius: 5px;
+            transition: all .3s;
+        }
+
+        &:hover img {
+            filter: brightness(30%);
+        }
+
+        &:hover .card-body {
+            opacity: 1;
+        }
+    }
+
+    .card-body {
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        color: rgb(202, 202, 202);
+        transition: all .3s;
     }
 
     .my_flag-container {
