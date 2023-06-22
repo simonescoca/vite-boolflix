@@ -20,6 +20,9 @@
                 <i class="fa-solid fa-star my_gold-star" v-for="i in Math.ceil( (movie.vote_average) / 2)"></i>
                 <i class="fa-regular fa-star my_gold-star" v-for="i in (5 - Math.ceil( (movie.vote_average) / 2))"></i>
             </p>
+            <p>
+                {{ movie.overview }}
+            </p>
         </div>
     </div>
 </template>
@@ -83,6 +86,7 @@
     }
 
     .card-body {
+        overflow: auto;
         opacity: 0;
         position: absolute;
         top: 0;

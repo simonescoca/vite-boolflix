@@ -20,6 +20,9 @@
                 <i class="fa-solid fa-star my_gold-star" v-for="i in Math.ceil( (serie.vote_average) / 2)"></i>
                 <i class="fa-regular fa-star my_gold-star" v-for="i in (5 - Math.ceil( (serie.vote_average) / 2))"></i>
             </p>
+            <p>
+                {{ serie.overview }}
+            </p>
         </div>
     </div>
 </template>
@@ -65,6 +68,33 @@
 
     .card {
         width: 18rem;
+        position: relative;
+        cursor: pointer;
+
+        img {
+            border-radius: 5px;
+            transition: all .3s;
+        }
+
+        &:hover img {
+            filter: brightness(30%);
+        }
+
+        &:hover .card-body {
+            opacity: 1;
+        }
+    }
+
+    .card-body {
+        overflow: auto;
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        color: rgb(202, 202, 202);
+        transition: all .3s;
     }
 
     .my_flag-container {
