@@ -1,6 +1,6 @@
 <template>
     <main class="container d-flex flex-wrap">
-        <section v-if="store.moviesData.length === 0 && store.seriesData.length === 0">
+        <section v-if="store.moviesData.length === 0 && store.seriesData.length === 0" class="my_no-results">
             No results found
         </section>
        <SingleMovie v-for="movie in store.moviesData" :movie="movie" :flags="flags"/>
@@ -55,6 +55,12 @@
 <style lang="scss" scoped>
     @use "../styles/variables";
     @use "../styles/mixins";
+
+    .my_no-results {
+        color: rgb(176, 176, 176);
+        font-size: 1.3rem;
+        font-weight: 600;
+    }
 
     .container {
         gap: 2rem;
