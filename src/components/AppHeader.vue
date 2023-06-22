@@ -1,7 +1,7 @@
 <template>
     <header class="container">
         <div class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" v-model="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" v-model="search" @keyup.enter="axiosCall">
             <button class="btn btn-outline-success" type="submit" @click="axiosCall">
                 Search
             </button>
@@ -43,6 +43,7 @@
                 axios.get(`https://api.themoviedb.org/3/search/movie?api_key=dc3e5c6f1e5fee243aaae7cfaab19b0e&query=${this.search}`)
                 .then((response) => {
                     // handle success
+                    this.store.moviesData = []
                     response.data.results.forEach((element) => {
                         this.store.moviesData.push(element)
                     });
@@ -59,6 +60,7 @@
                 axios.get(`https://api.themoviedb.org/3/search/tv?api_key=dc3e5c6f1e5fee243aaae7cfaab19b0e&query=${this.search}`)
                 .then((response) => {
                     // handle success
+                    this.store.seriesData = []
                     response.data.results.forEach((element) => {
                         this.store.seriesData.push(element)
                     });
@@ -70,6 +72,8 @@
                 .finally(function () {
                     // always executed
                 });
+
+                this.search = ""
             }
         }
     }
