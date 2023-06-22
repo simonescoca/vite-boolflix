@@ -1,5 +1,8 @@
 <template>
     <main class="container d-flex flex-wrap">
+        <section v-if="store.moviesData.length === 0 && store.seriesData.length === 0">
+            No results found
+        </section>
        <SingleMovie v-for="movie in store.moviesData" :movie="movie" :flags="flags"/>
        <SingleSerie v-for="serie in store.seriesData" :serie="serie" :flags="flags"/>
     </main>
@@ -55,5 +58,6 @@
 
     .container {
         gap: 2rem;
+        margin-bottom: 3rem;
     }
 </style>
