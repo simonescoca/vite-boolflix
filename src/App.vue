@@ -1,9 +1,11 @@
 <template>
-    <SearchBar />
+    <AppHeader />
+    <AppMain />
 </template>
 
 <script>
-    import SearchBar from "./components/SearchBar.vue";
+    import AppHeader from "./components/AppHeader.vue";
+    import AppMain from "./components/AppMain.vue";
     export default {
         data() {
             return {
@@ -12,7 +14,8 @@
         },
 
         components: {
-            SearchBar
+            AppHeader,
+            AppMain
         },
 
         props: {

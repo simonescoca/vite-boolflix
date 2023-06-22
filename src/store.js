@@ -1,7 +1,7 @@
 import {reactive} from 'vue';
 const store = reactive ({
-    datum1: "",
-    datum2: ""
+    moviesData: [],
+    seriesData: []
 });
 
 export {store}

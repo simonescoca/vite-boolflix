@@ -51,9 +51,9 @@
 
         methods: {
             checkFlag (language) {
-                let a = "this.flags." + language
-                a = eval(a)
-                return a
+                let aFlag = "this.flags." + language
+                aFlag = eval(aFlag)
+                return aFlag
             }
         }
     }

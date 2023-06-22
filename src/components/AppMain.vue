@@ -1,14 +1,19 @@
 <template>
-    <div class="container d-flex flex-wrap">
-       <SingleSerie v-for="serie in seriesData" :serie="serie" :flags="flags"/>
-    </div>
+    <main class="container d-flex flex-wrap">
+       <SingleMovie v-for="movie in store.moviesData" :movie="movie" :flags="flags"/>
+       <SingleSerie v-for="serie in store.seriesData" :serie="serie" :flags="flags"/>
+    </main>
 </template>
 
 <script>
-    import SingleSerie from "./SingleSerie.vue"
+    import {store} from "../store.js";
+    import SingleMovie from "./SingleMovie.vue";
+    import SingleSerie from "./SingleSerie.vue";
+
     export default {
         data() {
             return {
+                store,
                 flags: {
                     it: "https://www.colorkit.it/image/cache/catalog/OLD/Bandiere/Italia/bandiera%20italiana%20adesiva-600x600.jpg",
                     fr: "https://www.aroundtheworld.pro/wp-content/uploads/2019/10/Bandiera-Francese-e1571734682907.jpg",
@@ -22,11 +27,12 @@
         },
 
         components: {
+            SingleMovie,
             SingleSerie
         },
 
         props: {
-            seriesData: Array
+
         },
 
         mounted () {

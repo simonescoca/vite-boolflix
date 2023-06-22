@@ -1,32 +1,28 @@
 <template>
-    <div class="container">
+    <header class="container">
         <div class="d-flex" role="search">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" v-model="search">
             <button class="btn btn-outline-success" type="submit" @click="axiosCall">
                 Search
             </button>
         </div>
-        <MoviesContainer :moviesData="moviesData"/>
-        <SeriesContainer :seriesData="seriesData" />
-    </div>
+    </header>
 </template>
 
 <script>
-    import axios from "axios"
-    import MoviesContainer from "./MoviesContainer.vue"
-    import SeriesContainer from "./SeriesContainer.vue"
+    import {store} from "../store.js";
+    import axios from "axios";
+
     export default {
         data() {
             return {
                 search: "",
-                moviesData: [],
-                seriesData: [],
+                store
             }
         },
 
         components: {
-            MoviesContainer,
-            SeriesContainer
+
         },
 
         props: {
@@ -48,9 +44,8 @@
                 .then((response) => {
                     // handle success
                     response.data.results.forEach((element) => {
-                        this.moviesData.push(element)
+                        this.store.moviesData.push(element)
                     });
-                    console.log(this.moviesData);
                 })
                 .catch(function (error) {
                     // handle error
@@ -65,9 +60,8 @@
                 .then((response) => {
                     // handle success
                     response.data.results.forEach((element) => {
-                        this.seriesData.push(element)
+                        this.store.seriesData.push(element)
                     });
-                    console.log(this.moviesData);
                 })
                 .catch(function (error) {
                     // handle error
